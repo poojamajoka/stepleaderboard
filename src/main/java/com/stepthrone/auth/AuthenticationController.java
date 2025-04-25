@@ -1,5 +1,6 @@
 package com.stepthrone.auth;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AuthenticationController {
      * for /register
      */
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest registerRequest) {
         AuthenticationResponse authenticationResponse = authenticationService.register(registerRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(authenticationResponse);
     }
@@ -28,7 +29,7 @@ public class AuthenticationController {
      */
     //AuthenticationResponse authenticate(authenticationRequest)
     @PostMapping("/authenticate")
-    private ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+    private ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
         AuthenticationResponse authenticationResponse = authenticationService.authenticate(authenticationRequest);
         return ResponseEntity.status(HttpStatus.OK).body(authenticationResponse);
     }

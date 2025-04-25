@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - DailyStepRepositoryTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>DailyStepRepositoryTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.stepthrone.stepcount.repository.html">com.stepthrone.stepcount.repository</a> &gt; DailyStepRepositoryTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">6</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.116s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">findAllByDateOrderByStepsDesc_ShouldReturnOrderedResults()</td>
+<td class="success">0.021s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findAllByUserId_ShouldReturnPaginatedResults()</td>
+<td class="success">0.023s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByUserAndDate_ShouldReturnDailyStepDataWhenExists()</td>
+<td class="success">0.012s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findByUserAndDate_ShouldReturnEmptyWhenNotFound()</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findUserTotalStepsRanking_ShouldReturnPaginatedResults()</td>
+<td class="success">0.043s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">save_ShouldSetLastUpdatedAutomatically()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-04-25T11:58:35.744-05:00  INFO 4505 --- [StepThrone] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.stepthrone.stepcount.repository.DailyStepRepositoryTest]: DailyStepRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-04-25T11:58:35.757-05:00  INFO 4505 --- [StepThrone] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.stepthrone.StepThroneApplication for test class com.stepthrone.stepcount.repository.DailyStepRepositoryTest
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    SELECT
+        d.user_id,
+        u.first_name,
+        u.last_name,
+        SUM(d.steps) as total_steps 
+    FROM
+        daily_steps d 
+    JOIN
+        users u 
+            ON d.user_id = u.id 
+    GROUP BY
+        d.user_id,
+        u.first_name,
+        u.last_name 
+    ORDER BY
+        total_steps DESC 
+    limit
+        ? 
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.user_id=? 
+    order by
+        dsd1_0.date desc 
+    limit
+        ?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.user_id=? 
+        and dsd1_0.date=?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.date=? 
+    order by
+        dsd1_0.steps desc
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.user_id=? 
+        and dsd1_0.date=?
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.13</a> at Apr 25, 2025, 11:58:36 AM</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stepthrone.profile.repository.UserRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-04-25T16:58:35.349Z" hostname="Poojas-MacBook-Air.local" time="0.243">
+  <properties/>
+  <testcase name="findByUsername_ShouldReturnUserWhenExists()" classname="com.stepthrone.profile.repository.UserRepositoryTest" time="0.166"/>
+  <testcase name="update_ShouldModifyExistingUser()" classname="com.stepthrone.profile.repository.UserRepositoryTest" time="0.05"/>
+  <testcase name="findByUsername_ShouldReturnEmptyWhenNotExists()" classname="com.stepthrone.profile.repository.UserRepositoryTest" time="0.005"/>
+  <testcase name="delete_ShouldRemoveUser()" classname="com.stepthrone.profile.repository.UserRepositoryTest" time="0.012"/>
+  <testcase name="save_ShouldPersistUserWithProfile()" classname="com.stepthrone.profile.repository.UserRepositoryTest" time="0.006"/>
+  <system-out><![CDATA[2025-04-25T11:58:34.869-05:00  INFO 4505 --- [StepThrone] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.stepthrone.profile.repository.UserRepositoryTest]: UserRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-04-25T11:58:34.906-05:00  INFO 4505 --- [StepThrone] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.stepthrone.StepThroneApplication for test class com.stepthrone.profile.repository.UserRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.4)
+
+2025-04-25T11:58:34.950-05:00  INFO 4505 --- [StepThrone] [    Test worker] c.s.p.repository.UserRepositoryTest      : Starting UserRepositoryTest using Java 21.0.1 with PID 4505 (started by pmajoka in /Users/pmajoka/Downloads/ASD_SOL/StepThrone)
+2025-04-25T11:58:34.951-05:00  INFO 4505 --- [StepThrone] [    Test worker] c.s.p.repository.UserRepositoryTest      : No active profile set, falling back to 1 default profile: "default"
+2025-04-25T11:58:35.058-05:00  INFO 4505 --- [StepThrone] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-25T11:58:35.076-05:00  INFO 4505 --- [StepThrone] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 2 JPA repository interfaces.
+2025-04-25T11:58:35.139-05:00  INFO 4505 --- [StepThrone] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-25T11:58:35.140-05:00  WARN 4505 --- [StepThrone] [    Test worker] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.transactionType], use [jakarta.persistence.transactionType] instead
+2025-04-25T11:58:35.142-05:00  INFO 4505 --- [StepThrone] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-25T11:58:35.152-05:00  INFO 4505 --- [StepThrone] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-25T11:58:35.153-05:00  INFO 4505 --- [StepThrone] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-04-25T11:58:35.186-05:00  INFO 4505 --- [StepThrone] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3212ff1b
+2025-04-25T11:58:35.186-05:00  INFO 4505 --- [StepThrone] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-04-25T11:58:35.188-05:00  WARN 4505 --- [StepThrone] [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-25T11:58:35.189-05:00  INFO 4505 --- [StepThrone] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 9.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-25T11:58:35.254-05:00  INFO 4505 --- [StepThrone] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-25T11:58:35.274-05:00  INFO 4505 --- [StepThrone] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-25T11:58:35.347-05:00  INFO 4505 --- [StepThrone] [    Test worker] c.s.p.repository.UserRepositoryTest      : Started UserRepositoryTest in 0.436 seconds (process running for 5.283)
+Hibernate: 
+    select
+        next_val as id_val 
+    from
+        users_seq for update
+Hibernate: 
+    update
+        users_seq 
+    set
+        next_val= ? 
+    where
+        next_val=?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.password,
+        u1_0.age,
+        u1_0.first_name,
+        u1_0.height,
+        u1_0.last_name,
+        u1_0.weight,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    update
+        users 
+    set
+        password=?,
+        age=?,
+        first_name=?,
+        height=?,
+        last_name=?,
+        weight=?,
+        username=? 
+    where
+        id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.password,
+        u1_0.age,
+        u1_0.first_name,
+        u1_0.height,
+        u1_0.last_name,
+        u1_0.weight,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.password,
+        u1_0.age,
+        u1_0.first_name,
+        u1_0.height,
+        u1_0.last_name,
+        u1_0.weight,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    delete 
+    from
+        users 
+    where
+        id=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.password,
+        u1_0.age,
+        u1_0.first_name,
+        u1_0.height,
+        u1_0.last_name,
+        u1_0.weight,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.password,
+        u1_0.age,
+        u1_0.first_name,
+        u1_0.height,
+        u1_0.last_name,
+        u1_0.weight,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

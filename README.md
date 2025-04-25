@@ -29,12 +29,16 @@ StepThrone is a fitness tracking application that helps users monitor their dail
 
 ## Tech Stack 💻
 
-| Category      | Technologies           |
-|---------------|------------------------|
-| Backend       | Spring Boot 3, Java 21 |
-| Security      | JWT, Spring Security   |
-| Database      | SQL/H2 (dev)           | 
-| Build Tool    | Gradle                 | 
+| Category       | Technologies                        |
+|----------------|-------------------------------------|
+| Backend        | Spring Boot 3, Java 21              |
+| Security       | JWT, Spring Security                |
+| Database       | SQL/H2 (dev)                        |
+| Build Tool     | Gradle                              |
+| Containerization | Docker                            |
+| Version Control| GitHub                              |
+| Microsoft Tech | Azure, Azure SQL, Azure App Service |
+
 
 
 

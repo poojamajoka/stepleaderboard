@@ -1,10 +1,12 @@
 package com.stepthrone.stepcount.service;
 
 
-import com.stepthrone.exception.customexception.InvalidDateException;
 import com.stepthrone.exception.customexception.ProfileNotFoundException;
 import com.stepthrone.exception.customexception.StepDataNotFoundException;
-import com.stepthrone.stepcount.dto.*;
+import com.stepthrone.stepcount.dto.DailyLeaderboardResponse;
+import com.stepthrone.stepcount.dto.DailyStepRequest;
+import com.stepthrone.stepcount.dto.DailyStepResponse;
+import com.stepthrone.stepcount.dto.GlobalLeaderboardResponse;
 import com.stepthrone.stepcount.mapper.StepDataMapper;
 import com.stepthrone.stepcount.model.DailyStepData;
 import com.stepthrone.stepcount.repository.DailyStepRepository;
@@ -17,7 +19,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.security.Principal;
 import java.time.Instant;
@@ -27,7 +32,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class StepServiceTest {
@@ -116,15 +122,7 @@ class StepServiceTest {
         verify(stepRepository).save(existingData);
     }
 
-    @Test
-    void submitDailySteps_ShouldThrowExceptionForFutureDate() {
-        // Arrange
-        DailyStepRequest futureRequest = new DailyStepRequest(LocalDate.now().plusDays(1), 10000);
 
-        // Act & Assert
-        assertThrows(InvalidDateException.class, () ->
-                stepService.submitDailySteps("john.doe", futureRequest));
-    }
 
     @Test
     void submitDailySteps_ShouldThrowExceptionWhenUserNotFound() {

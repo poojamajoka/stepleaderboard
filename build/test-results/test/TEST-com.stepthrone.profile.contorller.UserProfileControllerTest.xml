@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stepthrone.profile.contorller.UserProfileControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-04-25T16:58:34.634Z" hostname="Poojas-MacBook-Air.local" time="0.218">
+  <properties/>
+  <testcase name="getProfile_ShouldReturnUserProfile()" classname="com.stepthrone.profile.contorller.UserProfileControllerTest" time="0.211"/>
+  <testcase name="updateProfile_ShouldReturnUpdatedProfile()" classname="com.stepthrone.profile.contorller.UserProfileControllerTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

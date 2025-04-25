@@ -48,7 +48,7 @@ class UserProfileControllerTest {
     @Test
     void getProfile_ShouldReturnUserProfile() {
         // Arrange
-        when(principal.getName()).thenReturn("john.doe");
+       // when(principal.getName()).thenReturn("john.doe");
         when(userService.getProfile(principal)).thenReturn(mockResponse);
 
         // Act
@@ -64,7 +64,7 @@ class UserProfileControllerTest {
     @Test
     void updateProfile_ShouldReturnUpdatedProfile() {
         // Arrange
-        when(principal.getName()).thenReturn("john.doe");
+       // when(principal.getName()).thenReturn("john.doe");
         when(userService.updateProfile(principal, updateRequest)).thenReturn(mockResponse);
 
         // Act

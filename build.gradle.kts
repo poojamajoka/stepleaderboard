@@ -40,6 +40,8 @@ dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	testImplementation("io.rest-assured:rest-assured:5.3.1")
 	testImplementation("io.rest-assured:kotlin-extensions:5.3.1")
+	testImplementation("com.h2database:h2")
+
 }
 
 tasks.withType<Test> {

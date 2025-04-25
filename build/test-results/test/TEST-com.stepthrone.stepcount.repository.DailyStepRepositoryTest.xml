@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.stepthrone.stepcount.repository.DailyStepRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-04-25T16:58:35.760Z" hostname="Poojas-MacBook-Air.local" time="0.121">
+  <properties/>
+  <testcase name="findUserTotalStepsRanking_ShouldReturnPaginatedResults()" classname="com.stepthrone.stepcount.repository.DailyStepRepositoryTest" time="0.043"/>
+  <testcase name="findAllByUserId_ShouldReturnPaginatedResults()" classname="com.stepthrone.stepcount.repository.DailyStepRepositoryTest" time="0.023"/>
+  <testcase name="findByUserAndDate_ShouldReturnDailyStepDataWhenExists()" classname="com.stepthrone.stepcount.repository.DailyStepRepositoryTest" time="0.012"/>
+  <testcase name="findAllByDateOrderByStepsDesc_ShouldReturnOrderedResults()" classname="com.stepthrone.stepcount.repository.DailyStepRepositoryTest" time="0.021"/>
+  <testcase name="save_ShouldSetLastUpdatedAutomatically()" classname="com.stepthrone.stepcount.repository.DailyStepRepositoryTest" time="0.009"/>
+  <testcase name="findByUserAndDate_ShouldReturnEmptyWhenNotFound()" classname="com.stepthrone.stepcount.repository.DailyStepRepositoryTest" time="0.008"/>
+  <system-out><![CDATA[2025-04-25T11:58:35.744-05:00  INFO 4505 --- [StepThrone] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.stepthrone.stepcount.repository.DailyStepRepositoryTest]: DailyStepRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-04-25T11:58:35.757-05:00  INFO 4505 --- [StepThrone] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.stepthrone.StepThroneApplication for test class com.stepthrone.stepcount.repository.DailyStepRepositoryTest
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    SELECT
+        d.user_id,
+        u.first_name,
+        u.last_name,
+        SUM(d.steps) as total_steps 
+    FROM
+        daily_steps d 
+    JOIN
+        users u 
+            ON d.user_id = u.id 
+    GROUP BY
+        d.user_id,
+        u.first_name,
+        u.last_name 
+    ORDER BY
+        total_steps DESC 
+    limit
+        ? 
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.user_id=? 
+    order by
+        dsd1_0.date desc 
+    limit
+        ?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.user_id=? 
+        and dsd1_0.date=?
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.date=? 
+    order by
+        dsd1_0.steps desc
+Hibernate: 
+    insert 
+    into
+        users
+        (password, age, first_name, height, last_name, weight, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        daily_steps
+        (date, last_updated, steps, user_id) 
+    values
+        (?, ?, ?, ?)
+Hibernate: 
+    select
+        dsd1_0.id,
+        dsd1_0.date,
+        dsd1_0.last_updated,
+        dsd1_0.steps,
+        dsd1_0.user_id 
+    from
+        daily_steps dsd1_0 
+    where
+        dsd1_0.user_id=? 
+        and dsd1_0.date=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
