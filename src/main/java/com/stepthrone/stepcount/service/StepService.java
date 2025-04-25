@@ -10,6 +10,8 @@ import com.stepthrone.stepcount.repository.DailyStepRepository;
 import com.stepthrone.userprofile.model.User;
 import com.stepthrone.userprofile.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +32,7 @@ public class StepService implements IStepService {
     private final StepDataMapper stepDataMapper;
 
     @Override
-    public DailyStepResponse submitDailySteps(String username,  DailyStepRequest request) {
+    public DailyStepResponse submitDailySteps(String username, DailyStepRequest request) {
         // Find the user
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ProfileNotFoundException("Profile not found"));
@@ -84,33 +86,37 @@ public class StepService implements IStepService {
 
     @Override
     @Transactional(readOnly = true)
-    public GlobalLeaderboardResponse getGlobalLeaderboard() {
-        List<Object[]> userRankings = stepRepository.findUserTotalStepsRanking();
+    public GlobalLeaderboardResponse getGlobalLeaderboard(Pageable pageable) {
+        Page<Object[]> userRankings = stepRepository.findUserTotalStepsRanking(pageable);
 
-        List<Ranking> rankings = IntStream.range(0, userRankings.size())
+        List<Ranking> rankings = IntStream.range(0, userRankings.getContent().size())
                 .mapToObj(i -> {
-                    Object[] row = userRankings.get(i);
+                    Object[] row = userRankings.getContent().get(i);
                     return new Ranking(
                             (Long) row[0],       // userId
                             (String) row[1],     // firstName
                             (String) row[2],     // lastName
                             ((Number) row[3]).intValue(),  // totalSteps
-                            i + 1                // rank
+                            (pageable.getPageNumber() * pageable.getPageSize()) + i + 1 // rank
                     );
                 })
                 .collect(Collectors.toList());
 
-        return new GlobalLeaderboardResponse(rankings);
+        return new GlobalLeaderboardResponse(
+                rankings,
+                userRankings.getTotalPages(),
+                userRankings.getTotalElements()
+        );
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<DailyStepResponse> getUserHistory(Principal principal) {
+    public Page<DailyStepResponse> getUserHistory(Principal principal, Pageable pageable) {
         User user = userRepository.findByUsername(principal.getName())
                 .orElseThrow(() -> new ProfileNotFoundException(principal.getName()));
-        return stepRepository.findAllByUserId(user.getId()).stream()
-                .map(stepDataMapper::dailyStepDatatoDailyStepResponse)
-                .collect(Collectors.toList());
+
+        return stepRepository.findAllByUserId(user.getId(), pageable)
+                .map(stepDataMapper::dailyStepDatatoDailyStepResponse);
     }
 
     @Override

@@ -38,8 +38,14 @@ dependencies {
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 	implementation("org.springframework:spring-tx")
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
+	testImplementation("io.rest-assured:rest-assured:5.3.1")
+	testImplementation("io.rest-assured:kotlin-extensions:5.3.1")
 }
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+tasks.bootJar {
+	archiveBaseName = "myapp"
+	archiveVersion = "1.0.1"
 }

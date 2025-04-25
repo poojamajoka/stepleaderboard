@@ -11,4 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class GlobalLeaderboardResponse {
     private List<Ranking> rankings;
+    private int totalPages;
+    private long totalElements;
 }

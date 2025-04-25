@@ -7,13 +7,16 @@ import com.stepthrone.stepcount.dto.GlobalLeaderboardResponse;
 import com.stepthrone.stepcount.service.StepService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/steps")
@@ -37,14 +40,26 @@ public class StepController {
     }
 
     @GetMapping("/leaderboard/global")
-    public ResponseEntity<GlobalLeaderboardResponse> getGlobalLeaderboard() {
-        GlobalLeaderboardResponse response = stepService.getGlobalLeaderboard();
+    public ResponseEntity<GlobalLeaderboardResponse> getGlobalLeaderboard(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        GlobalLeaderboardResponse response = stepService.getGlobalLeaderboard(pageable);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/history")
-    public ResponseEntity<List<DailyStepResponse>> getUserHistory(Principal principal) {
-        return ResponseEntity.ok(stepService.getUserHistory(principal));
+    public ResponseEntity<Page<DailyStepResponse>> getUserHistory(Principal principal , @RequestParam(defaultValue = "0") int page,
+                                                                  @RequestParam(defaultValue = "10") int size,
+                                                                  @RequestParam(defaultValue = "date") String sortBy,
+                                                                  @RequestParam(defaultValue = "desc") String sortDir) {
+
+        Sort.Direction direction = sortDir.equalsIgnoreCase("asc")
+                ? Sort.Direction.ASC
+                : Sort.Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
+        return ResponseEntity.ok(stepService.getUserHistory(principal,pageable));
     }
 
     @GetMapping("/user/daily")

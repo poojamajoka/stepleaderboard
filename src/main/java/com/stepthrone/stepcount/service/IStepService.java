@@ -4,19 +4,20 @@ import com.stepthrone.stepcount.dto.DailyLeaderboardResponse;
 import com.stepthrone.stepcount.dto.DailyStepRequest;
 import com.stepthrone.stepcount.dto.DailyStepResponse;
 import com.stepthrone.stepcount.dto.GlobalLeaderboardResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.List;
 
 public interface IStepService {
     DailyStepResponse submitDailySteps(String username, DailyStepRequest request);
 
     public DailyLeaderboardResponse getDailyLeaderboard(LocalDate date);
 
-    public GlobalLeaderboardResponse getGlobalLeaderboard();
+    GlobalLeaderboardResponse getGlobalLeaderboard(Pageable pageable);
 
-    public List<DailyStepResponse> getUserHistory(Principal principal);
+    public Page<DailyStepResponse> getUserHistory(Principal principal, Pageable pageable);
 
     public DailyStepResponse getUserDailySteps(Principal principal, LocalDate date);
 
